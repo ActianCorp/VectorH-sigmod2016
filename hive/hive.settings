@@ -1,0 +1,56 @@
+-- optimizer
+set hive.stats.autogather=true;
+set hive.compute.query.using.stats=true;
+set hive.stats.fetch.column.stats=true;
+set hive.stats.fetch.partition.stats=true;
+set hive.cbo.enable=true;
+set hive.optimize.correlation=true;
+set hive.optimize.index.filter=true;
+set hive.optimize.reducededuplication=true;
+set hive.optimize.reducededuplication.min.reducer=1;
+set hive.optimize.ppd=true;
+
+--vectorization
+set hive.vectorized.execution.enabled=true;
+set hive.vectorized.execution.reduce.enabled=true;
+
+-- joins
+set hive.enforce.bucketing=true;
+set hive.enforce.sorting=true;
+set hive.auto.convert.join=true;
+set hive.auto.convert.sortmerge.join=true;
+set hive.auto.convert.join.noconditionaltask=true;
+set hive.optimize.bucketmapjoin=true;
+set hive.optimize.bucketmapjoin.sortedmerge=true;
+set hive.auto.convert.join.noconditionaltask.size=100000000;
+set hive.convert.join.bucket.mapjoin.tez=true;
+
+
+-- execution
+set hive.execution.engine=tez;
+set hive.map.aggr=true;
+set hive.mapred.reduce.tasks.speculative.execution=false;
+set hive.exec.parallel=false;
+set hive.vectorized.execution.mapjoin.native.fast.hashtable.enabled=true;
+set hive.exec.reducers.bytes.per.reducer=67108864;
+set hive.tez.auto.reducer.parallelism=true;
+set mapreduce.input.fileinputformat.split.maxsize=1200000000;
+set mapreduce.input.fileinputformat.split.minsize=1200000000;
+set hive.exec.dynamic.partition=true;
+set hive.exec.dynamic.partition.mode=nonstrict;
+set hive.merge.mapredfiles=true;
+set hive.merge.mapfiles=true;
+
+-- memory
+set hive.tez.container.size=11264;
+set tez.task.resource.memory.mb=11264;
+
+-- orc
+set hive.exec.compress.output=true;
+set orc.compress=snappy;
+
+-- yarn
+set hive.prewarm.enabled=true;
+set hive.prewarm.numcontainers=180;
+
+

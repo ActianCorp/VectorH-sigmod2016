@@ -1,0 +1,43 @@
+use ${DB};
+
+drop table if exists lineitem_ins;
+create external table lineitem_ins
+(
+ L_ORDERKEY BIGINT,
+ L_PARTKEY INT,
+ L_SUPPKEY INT,
+ L_LINENUMBER INT,
+ L_QUANTITY DECIMAL(2,0),
+ L_EXTENDEDPRICE DECIMAL(8,2),
+ L_DISCOUNT DECIMAL(2,2),
+ L_TAX DECIMAL(2,2),
+ L_RETURNFLAG CHAR(1) ,
+ L_LINESTATUS CHAR(1) ,
+ L_SHIPDATE DATE ,
+ L_COMMITDATE DATE ,
+ L_RECEIPTDATE DATE ,
+ L_SHIPINSTRUCT CHAR(25) ,
+ L_SHIPMODE CHAR(10) ,
+ L_COMMENT VARCHAR(44)
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE
+LOCATION '${LOCATION_RF}/lineitem.tbl.u1/';
+
+drop table if exists orders_ins;
+create external table orders_ins (
+ O_ORDERKEY BIGINT ,
+ O_CUSTKEY INT ,
+ O_ORDERSTATUS CHAR(1) ,
+ O_TOTALPRICE DECIMAL(8,2),
+ O_ORDERDATE DATE ,
+ O_ORDERPRIORITY CHAR(15) ,
+ O_CLERK CHAR(15) ,
+ O_SHIPPRIORITY INT ,
+ O_COMMENT VARCHAR(79)
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' STORED AS TEXTFILE
+LOCATION '${LOCATION_RF}/orders.tbl.u1/';
+
+insert into table orders select * from orders_ins;
+insert into table lineitem select * from lineitem_ins;
+
