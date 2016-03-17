@@ -1,0 +1,5 @@
+The separate phases needed to be executed in order to run all 22 read-only TPC-H queries are defined in various .scala files.
+
+The easiest way to use them is to load them through spark-shell.
+
+In the file "all.scala" you can find a full example of how to execute all phases (registering csv temp tables, writing data into parquet files, registering parquet files as temp tables and running all 22 queries).
