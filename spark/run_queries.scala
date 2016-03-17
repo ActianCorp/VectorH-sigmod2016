@@ -33,7 +33,7 @@ val tablesToCache: Map[Int, List[String]] = Map(
 15 -> List("supplier"),
 16 -> List("partsupp", "supplier"),
 17 -> List("lineitem"),
-18 -> List("lineitem"),
+18 -> List("lineitem", "orders", "customer"),
 19 -> List("lineitem"),
 20 -> List("supplier", "partsupp"),
 21 -> List("lineitem", "supplier"),
